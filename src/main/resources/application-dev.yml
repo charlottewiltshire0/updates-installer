@@ -1,0 +1,25 @@
+server:
+    port: 8080
+
+spring:
+    application:
+        name: updater-installer
+
+    datasource:
+        username: ${DATABASE_USERNAME}
+        password: ${DATABASE_PASSWORD}
+        url: jdbc:postgresql://localhost:5432/updates
+
+    jpa:
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+
+logging:
+    level:
+        org:
+            springframework:
+                security: DEBUG
