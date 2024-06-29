@@ -12,9 +12,11 @@ class User (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
+    @get:JvmName("username")
     @Column(unique = true, nullable = false)
     var username: String,
 
+    @get:JvmName("password")
     @Column(nullable = false)
     var password: String,
 
@@ -26,15 +28,20 @@ class User (
     )
     val roles: Set<Roles>
 ) : UserDetails {
+
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         return roles.flatMap { role ->
             role.privileges.map { privilege -> SimpleGrantedAuthority(privilege.name) }
         }.toMutableList()
     }
 
-    override fun getPassword(): String = password
+    override fun getPassword(): String {
+        return password
+    }
 
-    override fun getUsername(): String = username
+    override fun getUsername(): String {
+        return username
+    }
 
     override fun isAccountNonExpired(): Boolean = true
 
