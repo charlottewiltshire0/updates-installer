@@ -13,10 +13,10 @@ class Role (
     val id: Long = 0,
 
     @Column(unique = true, nullable = false)
-    val name: String,
+    var name: String,
 
     @Column(nullable = true, length = 80)
-    val description: String,
+    var description: String,
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
