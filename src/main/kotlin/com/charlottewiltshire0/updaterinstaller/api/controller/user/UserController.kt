@@ -15,7 +15,7 @@ class UserController(
     private val userService: UserService
 ) {
 
-    @PostMapping()
+    @PostMapping
     fun createUser(@RequestBody body: CreateUserRequest) {
         userService.createUser(body)
     }
