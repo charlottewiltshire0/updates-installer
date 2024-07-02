@@ -3,6 +3,8 @@ package com.charlottewiltshire0.updaterinstaller.api.controller.user
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.CreateUserRequest
 import com.charlottewiltshire0.updaterinstaller.api.service.user.UserService
 import org.springframework.web.bind.annotation.CrossOrigin
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -18,5 +20,10 @@ class UserController(
     @PostMapping
     fun createUser(@RequestBody body: CreateUserRequest) {
         userService.createUser(body)
+    }
+
+    @GetMapping("/{id}")
+    fun getUserById(@PathVariable id: Long) {
+        userService.getUserById(id)
     }
 }
