@@ -3,16 +3,9 @@ package com.charlottewiltshire0.updaterinstaller.api.controller.user
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.CreateUserRequest
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.UpdateUserRequest
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce.UserResponse
+import com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce.UserSearchResponse
 import com.charlottewiltshire0.updaterinstaller.api.service.user.UserService
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PatchMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -42,5 +35,17 @@ class UserController(
     @DeleteMapping("/{id}")
     fun deleteUserById(@PathVariable id: Long): String {
         return userService.deleteUserById(id)
+    }
+
+    @GetMapping
+    fun searchUser(
+        @RequestParam q: String?,
+        @RequestParam sort: String?,
+        @RequestParam fields: String?,
+        @RequestParam("include_fields") includeFields: Boolean,
+        @RequestParam("page", defaultValue = "0") page: Int,
+        @RequestParam("per_page", defaultValue = "10") perPage: Int
+    ): UserSearchResponse {
+        return userService.searchUser(q, sort, fields, includeFields, page, perPage)
     }
 }
