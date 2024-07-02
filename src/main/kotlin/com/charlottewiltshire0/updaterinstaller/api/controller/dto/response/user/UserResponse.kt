@@ -1,4 +1,4 @@
-package com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce.user
+package com.charlottewiltshire0.updaterinstaller.api.controller.dto.response.user
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.time.LocalDateTime

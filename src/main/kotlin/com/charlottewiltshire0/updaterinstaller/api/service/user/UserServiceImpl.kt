@@ -2,23 +2,23 @@ package com.charlottewiltshire0.updaterinstaller.api.service.user
 
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.CreateUserRequest
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.UpdateUserRequest
-import com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce.user.UserResponse
+import com.charlottewiltshire0.updaterinstaller.api.controller.dto.response.user.UserResponse
 import com.charlottewiltshire0.updaterinstaller.api.exception.user.UserNotFoundException
 import com.charlottewiltshire0.updaterinstaller.store.entities.User
 import com.charlottewiltshire0.updaterinstaller.store.repositories.UserRepository
 import jakarta.persistence.EntityNotFoundException
 import jakarta.transaction.Transactional
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 @Transactional
 class UserServiceImpl(
     private val userRepository: UserRepository,
-    private val bCryptPasswordEncoder: BCryptPasswordEncoder,
+    private val passwordEncoder: PasswordEncoder,
 ): UserService {
     override fun createUser(createUserRequest: CreateUserRequest): UserResponse {
-        createUserRequest.password = bCryptPasswordEncoder.encode(createUserRequest.password)
+        createUserRequest.password = passwordEncoder.encode(createUserRequest.password)
 
         val user = User(username = createUserRequest.username, password = createUserRequest.password)
         userRepository.save(user)
@@ -58,7 +58,7 @@ class UserServiceImpl(
         }
 
         foundUser.username = updateUserRequest.username ?: foundUser.username
-        foundUser.password = updateUserRequest.password?.let { bCryptPasswordEncoder.encode(it) } ?: foundUser.password
+        foundUser.password = updateUserRequest.password?.let { passwordEncoder.encode(it) } ?: foundUser.password
 
         val savedUser = userRepository.save(foundUser)
         return UserResponse(
