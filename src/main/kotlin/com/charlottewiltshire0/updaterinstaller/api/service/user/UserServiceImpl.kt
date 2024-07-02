@@ -6,6 +6,7 @@ import com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce.user
 import com.charlottewiltshire0.updaterinstaller.api.exception.user.UserNotFoundException
 import com.charlottewiltshire0.updaterinstaller.store.entities.User
 import com.charlottewiltshire0.updaterinstaller.store.repositories.UserRepository
+import jakarta.persistence.EntityNotFoundException
 import jakarta.transaction.Transactional
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
@@ -43,8 +44,12 @@ class UserServiceImpl(
     }
 
     override fun deleteUserById(id: Long): String {
-        val foundUser = userRepository.deleteById(id)
-        return "User successfully deleted."
+        return try {
+            userRepository.deleteById(id)
+            "User with id $id deleted successfully."
+        } catch (ex: EntityNotFoundException) {
+            "User with id $id not found."
+        }
     }
 
     override fun updateUser(id: Long, updateUserRequest: UpdateUserRequest): UserResponse {
