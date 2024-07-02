@@ -2,13 +2,12 @@ package com.charlottewiltshire0.updaterinstaller.api.service.user
 
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.CreateUserRequest
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.UpdateUserRequest
-import com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce.user.UserResponse
+import com.charlottewiltshire0.updaterinstaller.api.controller.dto.response.user.UserResponse
 import com.charlottewiltshire0.updaterinstaller.api.exception.user.UserNotFoundException
 import com.charlottewiltshire0.updaterinstaller.store.entities.User
 import com.charlottewiltshire0.updaterinstaller.store.repositories.UserRepository
 import jakarta.persistence.EntityNotFoundException
 import jakarta.transaction.Transactional
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 

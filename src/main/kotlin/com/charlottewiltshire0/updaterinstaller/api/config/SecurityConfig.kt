@@ -27,10 +27,10 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.GET, "/api/v1/users/{id}").hasAnyRole("ADMIN", "SUPERADMIN")
                     .anyRequest().authenticated()
             }
-            .formLogin { login ->
-                login
-                    .permitAll()
-            }
+//            .httpBasic() { login ->
+//                login
+//                    .permitAll()
+//            }
             .logout { logout ->
                 logout
                     .permitAll()

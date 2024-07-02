@@ -2,7 +2,7 @@ package com.charlottewiltshire0.updaterinstaller.api.controller.user
 
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.CreateUserRequest
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.UpdateUserRequest
-import com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce.user.UserResponse
+import com.charlottewiltshire0.updaterinstaller.api.controller.dto.response.user.UserResponse
 import com.charlottewiltshire0.updaterinstaller.api.service.user.UserService
 import org.springframework.web.bind.annotation.*
 
