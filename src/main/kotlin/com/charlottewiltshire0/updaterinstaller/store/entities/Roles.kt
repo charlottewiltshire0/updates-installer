@@ -21,5 +21,5 @@ class Roles (
         joinColumns = [JoinColumn(name = "roles_id")],
         inverseJoinColumns = [JoinColumn(name = "privileges_id")]
     )
-    val privileges: Set<Privilege> = mutableSetOf()
+    val privileges: Set<Privileges> = mutableSetOf()
 )
