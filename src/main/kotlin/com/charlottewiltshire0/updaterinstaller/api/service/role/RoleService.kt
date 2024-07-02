@@ -15,4 +15,6 @@ interface RoleService {
     fun updateRoleById(id: Long, updateRoleRequest: UpdateRoleRequest): RoleResponse
 
     // TODO: fun getUsersByRole
+
+    // TODO: fun assignRole
 }
