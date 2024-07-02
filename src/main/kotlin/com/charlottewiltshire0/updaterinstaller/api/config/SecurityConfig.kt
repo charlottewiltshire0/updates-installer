@@ -13,7 +13,7 @@ import org.springframework.security.web.SecurityFilterChain
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
 class SecurityConfig(
-    private val userDetailsService: UserDetailsService
+//    private val userDetailsService: UserDetailsService
 ) {
 
     @Bean
@@ -24,16 +24,11 @@ class SecurityConfig(
     @Bean
     @Throws(Exception::class)
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
-        http.authorizeRequests()
-            .requestMatchers("/api/v1/user/create").hasRole("ADMIN")
-            .requestMatchers("/user/**").hasRole("USER")
-            .anyRequest().authenticated()
+        http
+            .authorizeRequests()
+            .anyRequest().permitAll()
             .and()
-            .formLogin()
-            .and()
-            .logout()
-            .and()
-            .exceptionHandling().accessDeniedPage("/403")
+            .csrf().disable()
         return http.build()
     }
 }
