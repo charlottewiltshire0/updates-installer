@@ -59,7 +59,7 @@ class UserServiceImpl(
         }
 
         foundUser.username = updateUserRequest.username ?: foundUser.username
-        foundUser.password = updateUserRequest.password?.let { bCryptPasswordEncoder.encode(it) } ?: foundUser.password
+        foundUser.password = updateUserRequest.password?.let { passwordEncoder.encode(it) } ?: foundUser.password
 
         val savedUser = userRepository.save(foundUser)
         return UserResponse(
