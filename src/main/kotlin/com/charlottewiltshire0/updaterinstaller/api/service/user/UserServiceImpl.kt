@@ -9,16 +9,17 @@ import com.charlottewiltshire0.updaterinstaller.store.repositories.UserRepositor
 import jakarta.persistence.EntityNotFoundException
 import jakarta.transaction.Transactional
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 @Transactional
 class UserServiceImpl(
     private val userRepository: UserRepository,
-    private val bCryptPasswordEncoder: BCryptPasswordEncoder,
+    private val passwordEncoder: PasswordEncoder,
 ): UserService {
     override fun createUser(createUserRequest: CreateUserRequest): UserResponse {
-        createUserRequest.password = bCryptPasswordEncoder.encode(createUserRequest.password)
+        createUserRequest.password = passwordEncoder.encode(createUserRequest.password)
 
         val user = User(username = createUserRequest.username, password = createUserRequest.password)
         userRepository.save(user)
