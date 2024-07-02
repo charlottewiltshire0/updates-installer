@@ -3,7 +3,7 @@ package com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.time.LocalDateTime
 
-data class CreateUserResponse(
+data class UserResponse(
     @JsonProperty("user_id")
     val userId: Long,
 
