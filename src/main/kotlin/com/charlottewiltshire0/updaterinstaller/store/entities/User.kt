@@ -2,9 +2,12 @@ package com.charlottewiltshire0.updaterinstaller.store.entities
 
 import com.charlottewiltshire0.updaterinstaller.api.utils.UserIdGenerator
 import jakarta.persistence.*
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
+import java.time.LocalDateTime
 
 @Entity
 @Table(name = "users")
@@ -26,8 +29,15 @@ class User (
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "roles_id")]
     )
-    val roles: Set<Roles> = mutableSetOf()
-) : UserDetails {
+    val roles: Set<Roles> = mutableSetOf(),
+
+    @CreationTimestamp
+    val createdAt: LocalDateTime = LocalDateTime.now(),
+
+    @UpdateTimestamp
+    val updatedAt: LocalDateTime = LocalDateTime.now(),
+
+    ) : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         return roles.flatMap { role ->
