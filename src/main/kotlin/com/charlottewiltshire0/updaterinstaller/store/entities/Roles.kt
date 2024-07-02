@@ -9,17 +9,17 @@ class Roles (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 24)
     val name: String,
 
-    @Column(nullable = true)
+    @Column(nullable = true, length = 80)
     val description: String,
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "roles_privileges",
-        joinColumns = [JoinColumn(name = "role_id", referencedColumnName = "id")],
-        inverseJoinColumns = [JoinColumn(name = "privilege_id", referencedColumnName = "id")]
+        joinColumns = [JoinColumn(name = "roles_id")],
+        inverseJoinColumns = [JoinColumn(name = "privileges_id")]
     )
-    val privileges: Set<Privilege>
+    val privileges: Set<Privileges> = mutableSetOf()
 )

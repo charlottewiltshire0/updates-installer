@@ -1,16 +1,19 @@
 package com.charlottewiltshire0.updaterinstaller.store.entities
 
+import com.charlottewiltshire0.updaterinstaller.api.utils.UserIdGenerator
 import jakarta.persistence.*
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
+import java.time.LocalDateTime
 
 @Entity
 @Table(name = "users")
 class User (
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    val id: Long = UserIdGenerator.generateUserId().toLong(),
 
     @get:JvmName("username")
     @Column(unique = true, nullable = false)
@@ -22,12 +25,19 @@ class User (
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-        name = "users_roles",
-        joinColumns = [JoinColumn(name = "user_id", referencedColumnName = "id")],
-        inverseJoinColumns = [JoinColumn(name = "role_id", referencedColumnName = "id")]
+        name = "user_roles",
+        joinColumns = [JoinColumn(name = "user_id")],
+        inverseJoinColumns = [JoinColumn(name = "roles_id")]
     )
-    val roles: Set<Roles>
-) : UserDetails {
+    val roles: Set<Roles> = mutableSetOf(),
+
+    @CreationTimestamp
+    val createdAt: LocalDateTime = LocalDateTime.now(),
+
+    @UpdateTimestamp
+    val updatedAt: LocalDateTime = LocalDateTime.now(),
+
+    ) : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         return roles.flatMap { role ->
