@@ -17,9 +17,9 @@ class Roles (
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-        name = "roles_privilege",
+        name = "roles_privileges",
         joinColumns = [JoinColumn(name = "roles_id")],
-        inverseJoinColumns = [JoinColumn(name = "privilege_id")]
+        inverseJoinColumns = [JoinColumn(name = "privileges_id")]
     )
     val privileges: Set<Privilege> = mutableSetOf()
 )
