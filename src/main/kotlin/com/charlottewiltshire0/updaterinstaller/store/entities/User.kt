@@ -35,29 +35,5 @@ class User (
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    val updatedAt: LocalDateTime = LocalDateTime.now(),
-
-    ) : UserDetails {
-
-//    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-//        return roles.flatMap { role ->
-//            role.privileges.map { privilege -> SimpleGrantedAuthority(privilege.name) }
-//        }.toMutableList()
-//    }
-
-    override fun getPassword(): String {
-        return password
-    }
-
-    override fun getUsername(): String {
-        return username
-    }
-
-    override fun isAccountNonExpired(): Boolean = true
-
-    override fun isAccountNonLocked(): Boolean = true
-
-    override fun isCredentialsNonExpired(): Boolean = true
-
-    override fun isEnabled(): Boolean = true
-}
+    val updatedAt: LocalDateTime = LocalDateTime.now()
+)
