@@ -9,10 +9,10 @@ class Roles (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 24)
     val name: String,
 
-    @Column(nullable = true)
+    @Column(nullable = true, length = 80)
     val description: String,
 
     @ManyToMany(fetch = FetchType.EAGER)
