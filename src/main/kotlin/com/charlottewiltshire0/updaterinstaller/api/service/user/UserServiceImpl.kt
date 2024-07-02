@@ -1,6 +1,7 @@
 package com.charlottewiltshire0.updaterinstaller.api.service.user
 
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.CreateUserRequest
+import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.UpdateUserRequest
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce.UserResponse
 import com.charlottewiltshire0.updaterinstaller.api.exception.user.UserNotFoundException
 import com.charlottewiltshire0.updaterinstaller.store.entities.User
@@ -46,4 +47,20 @@ class UserServiceImpl(
         return "User successfully deleted."
     }
 
+    override fun updateUser(id: Long, updateUserRequest: UpdateUserRequest): UserResponse {
+        val foundUser = userRepository.findById(id).orElseThrow {
+            throw UserNotFoundException("User with id $id not found")
+        }
+
+        foundUser.username = updateUserRequest.username ?: foundUser.username
+        foundUser.password = updateUserRequest.password?.let { bCryptPasswordEncoder.encode(it) } ?: foundUser.password
+
+        val savedUser = userRepository.save(foundUser)
+        return UserResponse(
+            userId = savedUser.id,
+            username = savedUser.username,
+            createdAt = savedUser.createdAt,
+            updatedAt = savedUser.updatedAt
+        )
+    }
 }
