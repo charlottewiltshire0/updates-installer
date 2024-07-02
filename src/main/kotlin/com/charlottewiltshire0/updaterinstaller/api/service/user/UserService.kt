@@ -8,4 +8,6 @@ interface UserService {
     fun createUser(createUserRequest: CreateUserRequest): UserResponse
 
     fun getUserById(id: Long): UserResponse
+
+    fun deleteUserById(id: Long): String
 }

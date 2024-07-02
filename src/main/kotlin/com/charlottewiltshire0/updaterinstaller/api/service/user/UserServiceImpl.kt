@@ -41,4 +41,9 @@ class UserServiceImpl(
         )
     }
 
+    override fun deleteUserById(id: Long): String {
+        val foundUser = userRepository.deleteById(id)
+        return "User successfully deleted."
+    }
+
 }
