@@ -23,11 +23,11 @@ class User (
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-        name = "user_roles",
+        name = "users_roles",
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "role_id")]
     )
-    val roles: Set<Role> = mutableSetOf(),
+    val roles: Set<Role> = emptySet(),
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
