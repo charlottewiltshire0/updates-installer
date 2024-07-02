@@ -11,7 +11,7 @@ data class CreateUserResponse(
     val username: String,
 
     @JsonProperty("created_at")
-    val createAt: LocalDateTime,
+    val createdAt: LocalDateTime,
 
     @JsonProperty("updated_at")
     val updatedAt: LocalDateTime
