@@ -3,7 +3,7 @@ package com.charlottewiltshire0.updaterinstaller.api.utils
 import java.util.Random
 
 object UserIdGenerator {
-    private val random = Random()
+    private var random = Random()
 
     fun generateUserId(): String {
         val sb = StringBuilder(18)
