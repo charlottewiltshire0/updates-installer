@@ -2,7 +2,8 @@ package com.charlottewiltshire0.updaterinstaller.api.service.user
 
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.CreateUserRequest
 import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.UpdateUserRequest
-import com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce.UserResponse
+import com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce.user.UserResponse
+import com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce.user.UserSearchResponse
 
 interface UserService {
 
@@ -13,4 +14,13 @@ interface UserService {
     fun deleteUserById(id: Long): String
 
     fun updateUser(id: Long, updateUserRequest: UpdateUserRequest): UserResponse
+
+    fun searchUser(
+        q: String?,
+        sort: String?,
+        fields: String?,
+        includeFields: Boolean,
+        page: Int,
+        perPage: Int
+    ): UserSearchResponse
 }
