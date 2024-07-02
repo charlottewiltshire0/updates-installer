@@ -1,4 +1,4 @@
-package com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce
+package com.charlottewiltshire0.updaterinstaller.api.controller.dto.responce.user
 
 data class UserSearchResponse(
     val start: Int,
