@@ -1,5 +1,6 @@
 package com.charlottewiltshire0.updaterinstaller.store.entities
 
+import com.charlottewiltshire0.updaterinstaller.api.utils.UserIdGenerator
 import jakarta.persistence.*
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
@@ -9,8 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails
 @Table(name = "users")
 class User (
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    val id: Long = UserIdGenerator.generateUserId().toLong(),
 
     @get:JvmName("username")
     @Column(unique = true, nullable = false)
