@@ -1,4 +1,4 @@
-package com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user
+package com.charlottewiltshire0.updaterinstaller.api.dto.request.user
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

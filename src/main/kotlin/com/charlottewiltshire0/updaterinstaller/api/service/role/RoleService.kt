@@ -1,8 +1,8 @@
 package com.charlottewiltshire0.updaterinstaller.api.service.role
 
-import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.role.CreateRoleRequest
-import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.role.UpdateRoleRequest
-import com.charlottewiltshire0.updaterinstaller.api.controller.dto.response.role.RoleResponse
+import com.charlottewiltshire0.updaterinstaller.api.dto.request.role.CreateRoleRequest
+import com.charlottewiltshire0.updaterinstaller.api.dto.request.role.UpdateRoleRequest
+import com.charlottewiltshire0.updaterinstaller.api.dto.response.role.RoleResponse
 
 interface RoleService {
 

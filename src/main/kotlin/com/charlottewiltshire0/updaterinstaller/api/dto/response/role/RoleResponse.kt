@@ -1,4 +1,4 @@
-package com.charlottewiltshire0.updaterinstaller.api.controller.dto.response.role
+package com.charlottewiltshire0.updaterinstaller.api.dto.response.role
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

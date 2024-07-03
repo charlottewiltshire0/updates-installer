@@ -1,8 +1,8 @@
 package com.charlottewiltshire0.updaterinstaller.api.service.user
 
-import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.CreateUserRequest
-import com.charlottewiltshire0.updaterinstaller.api.controller.dto.request.user.UpdateUserRequest
-import com.charlottewiltshire0.updaterinstaller.api.controller.dto.response.user.UserResponse
+import com.charlottewiltshire0.updaterinstaller.api.dto.request.user.CreateUserRequest
+import com.charlottewiltshire0.updaterinstaller.api.dto.request.user.UpdateUserRequest
+import com.charlottewiltshire0.updaterinstaller.api.dto.response.user.UserResponse
 import com.charlottewiltshire0.updaterinstaller.api.exception.user.UserNotFoundException
 import com.charlottewiltshire0.updaterinstaller.store.entities.User
 import com.charlottewiltshire0.updaterinstaller.store.repositories.UserRepository
