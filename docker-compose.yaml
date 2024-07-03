@@ -1,0 +1,24 @@
+services:
+  postgres:
+    container_name: postgres-sql-bsn
+    image: postgres
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: updates
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - 5434:5432
+    networks:
+      - updates
+    restart: unless-stopped
+
+networks:
+  updates:
+    driver: bridge
+
+volumes:
+  postgres:
+    driver: local
