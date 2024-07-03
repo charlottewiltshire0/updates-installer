@@ -6,11 +6,11 @@ services:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: password
       PGDATA: /var/lib/postgresql/data
-      POSTGRES_DB: book_social_network
+      POSTGRES_DB: updates
     volumes:
       - postgres:/data/postgres
     ports:
-      - 5432:5432
+      - 5434:5432
     networks:
       - updates
     restart: unless-stopped
