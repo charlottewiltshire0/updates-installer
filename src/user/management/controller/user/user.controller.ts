@@ -1,10 +1,28 @@
-import { Controller, Delete, Get, Param, Patch } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  ValidationPipe,
+} from '@nestjs/common';
+import { CreateUserDto } from '../../dto/create-user.dto';
+import { UserService } from '../../service/user/user.service';
 
 @Controller('/api/v1/users')
 export class UserController {
+  constructor(private userService: UserService) {}
+
   @Get()
   getListOfUsers() {
     console.log('123');
+  }
+
+  @Post()
+  createUser(@Body(new ValidationPipe()) createUserDto: CreateUserDto) {
+    return this.userService.create(createUserDto);
   }
 
   @Get('/:id')
