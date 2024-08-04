@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { TicketEntity } from './ticket.entity';
 import { DeviceEntity } from './device.entity';
+import { Exclude } from 'class-transformer';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -27,6 +28,7 @@ export class UserEntity {
   email!: string;
 
   @Column({ type: 'varchar', nullable: false })
+  @Exclude()
   password!: string;
 
   @Column({
@@ -35,6 +37,7 @@ export class UserEntity {
     default: UserRole.GHOST,
     nullable: false,
   })
+  @Exclude()
   role: UserRole;
 
   @Column({ type: 'boolean', nullable: false, default: false })
