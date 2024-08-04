@@ -1,11 +1,13 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Delete,
   Get,
   Param,
   Patch,
   Post,
+  UseInterceptors,
   ValidationPipe,
 } from '@nestjs/common';
 import { CreateUserDto } from '../../dto/create-user.dto';
@@ -15,12 +17,14 @@ import { UserService } from '../../service/user/user.service';
 export class UserController {
   constructor(private userService: UserService) {}
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get()
   getListOfUsers() {
-    console.log('123');
+    return this.userService.getAll();
   }
 
   @Post()
+  @UseInterceptors(ClassSerializerInterceptor)
   createUser(@Body(new ValidationPipe()) createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }

@@ -12,7 +12,7 @@ export class UserService {
     private readonly userRepository: Repository<UserEntity>,
   ) {}
 
-  async create(createUserParams: CreateUserParams) {
+  async create(createUserParams: CreateUserParams): Promise<UserDetails> {
     const existUser = await this.userRepository.findOne({
       where: [
         { username: createUserParams.username },
@@ -23,20 +23,13 @@ export class UserService {
 
     const hashedPassword = await argon2.hash(createUserParams.password);
 
-    const user = await this.userRepository.save({
+    return await this.userRepository.save({
       ...createUserParams,
       password: hashedPassword,
     });
+  }
 
-    const userDetails: UserDetails = {
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      created_at: user.created_at,
-      updated_at: user.created_at,
-      blocked: user.blocked,
-    };
-
-    return userDetails;
+  async getAll(): Promise<UserEntity[]> {
+    return await this.userRepository.find();
   }
 }
