@@ -14,19 +14,19 @@ export class DeviceEntity {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ nullable: false })
+  @Column({ type: 'varchar', nullable: false })
   device_type!: string;
 
-  @Column({ nullable: false })
+  @Column({ type: 'varchar', nullable: false })
   device_model!: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   os_version?: string | null;
 
-  @Column({ nullable: false })
+  @Column({ type: 'varchar', nullable: false })
   platform!: string;
 
-  @Column({ nullable: false })
+  @Column({ type: 'varchar', nullable: false })
   architecture!: string;
 
   @ManyToOne(() => UserEntity, (user) => user.devices, { nullable: true })
