@@ -33,6 +33,6 @@ export class DeviceEntity {
   @JoinColumn({ name: 'user_id' })
   user_id: UserEntity;
 
-  @OneToMany(() => TicketEntity, (ticket) => ticket.device)
+  @OneToMany(() => TicketEntity, (ticket) => ticket.device_id)
   tickets: TicketEntity[];
 }

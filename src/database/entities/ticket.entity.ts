@@ -13,9 +13,6 @@ export class TicketEntity {
   @ManyToOne(() => UserEntity, (user) => user.tickets, { nullable: true })
   user_id!: UserEntity | null;
 
-  @Column({ type: 'varchar', nullable: false })
-  device_id!: string;
-
   @ManyToOne(() => DeviceEntity, (device) => device.tickets)
-  device!: DeviceEntity;
+  device_id!: DeviceEntity;
 }
