@@ -51,6 +51,6 @@ export class UserEntity {
   @OneToMany(() => DeviceEntity, (device) => device.user_id)
   devices: DeviceEntity[];
 
-  @OneToMany(() => TicketEntity, (ticket) => ticket.user_id)
+  @OneToMany(() => TicketEntity, (ticket) => ticket.user)
   tickets: TicketEntity[];
 }
