@@ -11,8 +11,10 @@ export class TicketEntity {
   installer_id!: string;
 
   @ManyToOne(() => UserEntity, (user) => user.tickets, { nullable: true })
-  user!: UserEntity | null;
+  user?: UserEntity;
 
-  @ManyToOne(() => DeviceEntity, (device) => device.tickets)
+  @ManyToOne(() => DeviceEntity, (device) => device.tickets, {
+    nullable: false,
+  })
   device!: DeviceEntity;
 }

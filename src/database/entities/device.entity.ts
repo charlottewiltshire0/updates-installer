@@ -31,8 +31,8 @@ export class DeviceEntity {
 
   @ManyToOne(() => UserEntity, (user) => user.devices, { nullable: true })
   @JoinColumn({ name: 'user_id' })
-  user_id: UserEntity;
+  user: UserEntity;
 
   @OneToMany(() => TicketEntity, (ticket) => ticket.device)
-  tickets: TicketEntity[];
+  tickets!: TicketEntity[];
 }

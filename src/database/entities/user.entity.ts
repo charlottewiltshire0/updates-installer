@@ -29,7 +29,12 @@ export class UserEntity {
   @Column({ type: 'varchar', nullable: false })
   password!: string;
 
-  @Column({ type: 'enum', enum: UserRole, default: UserRole.GHOST })
+  @Column({
+    type: 'enum',
+    enum: UserRole,
+    default: UserRole.GHOST,
+    nullable: false,
+  })
   role: UserRole;
 
   @Column({ type: 'boolean', nullable: false, default: false })
@@ -48,7 +53,7 @@ export class UserEntity {
   })
   updated_at: Date;
 
-  @OneToMany(() => DeviceEntity, (device) => device.user_id)
+  @OneToMany(() => DeviceEntity, (device) => device.user)
   devices: DeviceEntity[];
 
   @OneToMany(() => TicketEntity, (ticket) => ticket.user)
